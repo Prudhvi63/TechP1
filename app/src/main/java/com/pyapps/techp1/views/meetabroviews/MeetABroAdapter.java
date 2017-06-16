@@ -22,8 +22,8 @@ public class MeetABroAdapter extends RecyclerView.Adapter<MeetABroViewHolder> im
     private BrotherClickedListener listener;
     private ArrayList<Brother> brothers;
 
-    public MeetABroAdapter(LayoutInflater inflater, AppCompatActivity activity) {
-        this.inflater = inflater;
+    public MeetABroAdapter(BrotherClickedListener listener, AppCompatActivity activity) {
+        this.listener = listener;
         this.activity = activity;
         inflater = activity.getLayoutInflater();
         brothers = new ArrayList<Brother>();
@@ -62,7 +62,7 @@ public class MeetABroAdapter extends RecyclerView.Adapter<MeetABroViewHolder> im
 
     public interface BrotherClickedListener
     {
-        public void onBrotherClicked(Brother brother);
+         void onBrotherClicked(Brother brother);
 
     }
 }

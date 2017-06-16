@@ -11,6 +11,58 @@ public class Brother implements Parcelable{
     int id;
     String  name;
 
+    public static Creator<Brother> getCREATOR() {
+        return CREATOR;
+    }
+
+    String department;
+    String funfact;
+    String description;
+    String picture;
+    String whyJoin;
+
+    public Brother()
+    {}
+
+    protected Brother(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        department = in.readString();
+        funfact = in.readString();
+        description = in.readString();
+        picture = in.readString();
+        whyJoin = in.readString();
+    }
+
+    public static final Creator<Brother> CREATOR = new Creator<Brother>() {
+        @Override
+        public Brother createFromParcel(Parcel in) {
+            return new Brother(in);
+        }
+
+        @Override
+        public Brother[] newArray(int size) {
+            return new Brother[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(department);
+        dest.writeString(funfact);
+        dest.writeString(description);
+        dest.writeString(picture);
+        dest.writeString(whyJoin);
+    }
+
+
     public String getDepartment() {
         return department;
     }
@@ -67,51 +119,4 @@ public class Brother implements Parcelable{
         this.whyJoin = whyJoin;
     }
 
-    public static Creator<Brother> getCREATOR() {
-        return CREATOR;
-    }
-
-    String department;
-    String funfact;
-    String description;
-    String picture;
-    String whyJoin;
-
-    protected Brother(Parcel in) {
-        id = in.readInt();
-        name = in.readString();
-        department = in.readString();
-        funfact = in.readString();
-        description = in.readString();
-        picture = in.readString();
-        whyJoin = in.readString();
-    }
-
-    public static final Creator<Brother> CREATOR = new Creator<Brother>() {
-        @Override
-        public Brother createFromParcel(Parcel in) {
-            return new Brother(in);
-        }
-
-        @Override
-        public Brother[] newArray(int size) {
-            return new Brother[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(name);
-        dest.writeString(department);
-        dest.writeString(funfact);
-        dest.writeString(description);
-        dest.writeString(picture);
-        dest.writeString(whyJoin);
-    }
 }
