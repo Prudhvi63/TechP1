@@ -35,6 +35,7 @@ public class MeetABroViewHolder extends RecyclerView.ViewHolder
 
     public void populate(Context context, Brother brother)
     {
+        itemView.setTag(brother);
         Picasso.with(context)
                 .load(brother.getPicture())
                 .fit()

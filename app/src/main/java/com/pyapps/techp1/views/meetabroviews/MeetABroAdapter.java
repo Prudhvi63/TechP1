@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.pyapps.techp1.R;
 import com.pyapps.techp1.models.Brother;
+
+import java.util.ArrayList;
 
 /**
  * Created by prudh on 6/15/2017.
@@ -16,30 +19,44 @@ public class MeetABroAdapter extends RecyclerView.Adapter<MeetABroViewHolder> im
 
     LayoutInflater inflater;
     private AppCompatActivity activity;
+    private BrotherClickedListener listener;
+    private ArrayList<Brother> brothers;
 
+    public MeetABroAdapter(LayoutInflater inflater, AppCompatActivity activity) {
+        this.inflater = inflater;
+        this.activity = activity;
+        inflater = activity.getLayoutInflater();
+        brothers = new ArrayList<Brother>();
+    }
+
+    public ArrayList<Brother> getBrothers() {
+        return brothers;
+    }
 
     @Override
-    public MeetABroAdapter onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+    public MeetABroViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View listView = inflater.inflate(R.layout.list_meet_a_bro,parent,false);
+        listView.setOnClickListener(this);
+        return new MeetABroViewHolder(listView);
     }
 
     @Override
     public void onBindViewHolder(MeetABroViewHolder holder, int position) {
-
-    }
-
-    @Override
-    public void onBindViewHolder(MeetABroAdapter holder, int position) {
-
+        holder.populate(activity,brothers.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return brothers.size();
     }
 
     @Override
     public void onClick(View v) {
+        if(v.getTag() instanceof Brother)
+        {
+            Brother brother = (Brother) v.getTag();
+            listener.onBrotherClicked(brother);
+        }
 
     }
 
