@@ -2,7 +2,6 @@ package com.pyapps.techp1.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,12 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pyapps.techp1.R;
+import com.pyapps.techp1.activities.BaseActivity;
 import com.pyapps.techp1.models.Brother;
 import com.pyapps.techp1.views.meetabroviews.MeetABroAdapter;
 
 import java.util.ArrayList;
 
-public class MeetABroFragment extends Fragment implements MeetABroAdapter.BrotherClickedListener{
+public class MeetABroFragment extends BaseFragment implements MeetABroAdapter.BrotherClickedListener{
 
     private final String LOG_TAG = MeetABroFragment.class.getSimpleName();
     private MeetABroAdapter adapter;
@@ -36,7 +36,7 @@ public class MeetABroFragment extends Fragment implements MeetABroAdapter.Brothe
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View rootView = inflater.inflate(R.layout.fragement_meet_a_bro,container,false);
-        adapter = new MeetABroAdapter(this, (AppCompatActivity) getActivity());
+        adapter = new MeetABroAdapter(this, (BaseActivity) getActivity());
         brothers = adapter.getBrothers();
         recyclerView = (RecyclerView) rootView.findViewById(R.id.fragemnt_meet_a_bro_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));

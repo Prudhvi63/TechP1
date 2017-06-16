@@ -11,7 +11,7 @@ import com.pyapps.techp1.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.activity_main_ViewPager)
     ViewPager viewPager;

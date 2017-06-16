@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pyapps.techp1.R;
+import com.pyapps.techp1.activities.BaseActivity;
 import com.pyapps.techp1.models.Brother;
 
 import java.util.ArrayList;
@@ -18,13 +19,13 @@ import java.util.ArrayList;
 public class MeetABroAdapter extends RecyclerView.Adapter<MeetABroViewHolder> implements View.OnClickListener {
 
     LayoutInflater inflater;
-    private AppCompatActivity activity;
+    private BaseActivity baseActivity;
     private BrotherClickedListener listener;
     private ArrayList<Brother> brothers;
 
-    public MeetABroAdapter(BrotherClickedListener listener, AppCompatActivity activity) {
+    public MeetABroAdapter(BrotherClickedListener listener, BaseActivity activity) {
         this.listener = listener;
-        this.activity = activity;
+        this.baseActivity = activity;
         inflater = activity.getLayoutInflater();
         brothers = new ArrayList<Brother>();
     }
@@ -42,7 +43,7 @@ public class MeetABroAdapter extends RecyclerView.Adapter<MeetABroViewHolder> im
 
     @Override
     public void onBindViewHolder(MeetABroViewHolder holder, int position) {
-        holder.populate(activity,brothers.get(position));
+        holder.populate(baseActivity,brothers.get(position));
     }
 
     @Override
