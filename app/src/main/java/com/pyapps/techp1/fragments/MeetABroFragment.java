@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 
 import com.pyapps.techp1.R;
 
-/**
- * Created by prudh on 6/14/2017.
- */
-
 public class MeetABroFragment extends Fragment {
 
     public static MeetABroFragment newInstance()
