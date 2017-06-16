@@ -1,4 +1,4 @@
-package com.pyapps.techp1.adapters;
+package com.pyapps.techp1.views;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
