@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import com.pyapps.techp1.R;
 import com.pyapps.techp1.activities.BaseActivity;
 import com.pyapps.techp1.models.Brother;
+import com.pyapps.techp1.services.BrotherService;
 import com.pyapps.techp1.views.meetabroviews.MeetABroAdapter;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 
@@ -39,9 +41,9 @@ public class MeetABroFragment extends BaseFragment implements MeetABroAdapter.Br
         adapter = new MeetABroAdapter(this, (BaseActivity) getActivity());
         brothers = adapter.getBrothers();
         recyclerView = (RecyclerView) rootView.findViewById(R.id.fragemnt_meet_a_bro_recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
         setUpAdapter();
-        getBrothers(brothers);
+        bus.post(new BrotherService.BrothersRequest());
         return rootView;
     }
 
@@ -60,22 +62,9 @@ public class MeetABroFragment extends BaseFragment implements MeetABroAdapter.Br
         Log.i(LOG_TAG,"Brother"+brother.getId()+"was clicked");
     }
 
-    private ArrayList<Brother> getBrothers ( ArrayList<Brother> brothers)
+    @Subscribe public void getBrothers (BrotherService.BrothersResponse response)
     {
-        for(int i=0; i<=1000;i++)
-        {
-            Brother brother = new Brother();
-            brother.setId(i);
-            brother.setDepartment("Computer Science"+i);
-            brother.setName("Brother"+i);
-            brother.setWhyJoin("For this"+i+" things");
-            brother.setDescription("Desc"+i);
-            brother.setPicture("http://www.gravatar.com/avatar/"+i+"?d=identicon");
-            brothers.add(brother);
-
-
-        }
-        return brothers;
-
+        brothers.clear();
+        brothers.addAll(response.brothers);
     }
 }

@@ -2,6 +2,7 @@ package com.pyapps.techp1.infrastructure;
 
 import android.app.Application;
 
+import com.pyapps.techp1.inmemory.Module;
 import com.squareup.otto.Bus;
 
 /**
@@ -13,6 +14,12 @@ public class BeastApplication extends Application {
 
     public  BeastApplication(){
         bus = new Bus();
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Module.register(this);
     }
 
     public  Bus getBus()
