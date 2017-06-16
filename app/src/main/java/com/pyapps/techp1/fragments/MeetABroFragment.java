@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,14 +30,16 @@ public class MeetABroFragment extends Fragment implements MeetABroAdapter.Brothe
     {
         return new MeetABroFragment();
     }
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
         View rootView = inflater.inflate(R.layout.fragement_meet_a_bro,container,false);
         adapter = new MeetABroAdapter(this, (AppCompatActivity) getActivity());
         brothers = adapter.getBrothers();
         recyclerView = (RecyclerView) rootView.findViewById(R.id.fragemnt_meet_a_bro_recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),4));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
         setUpAdapter();
         getBrothers(brothers);
         return rootView;
@@ -52,7 +55,8 @@ public class MeetABroFragment extends Fragment implements MeetABroAdapter.Brothe
     }
 
     @Override
-    public void onBrotherClicked(Brother brother) {
+    public void onBrotherClicked(Brother brother)
+    {
         Log.i(LOG_TAG,"Brother"+brother.getId()+"was clicked");
     }
 
