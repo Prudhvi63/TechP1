@@ -1,5 +1,6 @@
 package com.pyapps.techp1.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.pyapps.techp1.R;
 import com.pyapps.techp1.activities.BaseActivity;
+import com.pyapps.techp1.activities.PracticeActivity;
 import com.pyapps.techp1.models.Brother;
 import com.pyapps.techp1.services.BrotherService;
 import com.pyapps.techp1.views.meetabroviews.MeetABroAdapter;
@@ -60,6 +62,8 @@ public class MeetABroFragment extends BaseFragment implements MeetABroAdapter.Br
     public void onBrotherClicked(Brother brother)
     {
         Log.i(LOG_TAG,"Brother"+brother.getId()+"was clicked");
+        Intent intent = PracticeActivity.newIntent(getActivity(),brother);
+        startActivity(intent);
     }
 
     @Subscribe public void getBrothers (BrotherService.BrothersResponse response)

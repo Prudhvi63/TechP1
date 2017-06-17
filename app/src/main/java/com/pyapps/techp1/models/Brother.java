@@ -10,11 +10,6 @@ import android.os.Parcelable;
 public class Brother implements Parcelable{
     int id;
     String  name;
-
-    public static Creator<Brother> getCREATOR() {
-        return CREATOR;
-    }
-
     String department;
     String funfact;
     String description;
@@ -24,6 +19,9 @@ public class Brother implements Parcelable{
     public Brother()
     {}
 
+    public static Creator<Brother> getCREATOR() {
+        return CREATOR;
+    }
     protected Brother(Parcel in) {
         id = in.readInt();
         name = in.readString();
