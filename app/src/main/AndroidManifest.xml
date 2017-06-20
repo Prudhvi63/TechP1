@@ -20,7 +20,7 @@
         </activity>
 
         <activity android:name=".activities.PracticeActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" android:theme="@style/CustomActivityTheme">
 
         </activity>
     </application>
